@@ -18,3 +18,15 @@ La Prime Prédite est calculée en utilisant la formule suivante :
 `Prime Prédite = Fréquence Prédite * Coût Moyen Prédit`
 
 ## Structure du Dépôt
+1. **models/ :** Contient les fichiers des modèles entraînés et les artéfacts de sérialisation.
+2. **notebooks/ :** Cahiers Jupyter avec analyse exploratoire des données, entraînement des modèles et expérimentations d'évaluation.
+3. **src/ :**  Code source pour le projet incluant le prétraitement des données, les définitions des modèles, les scripts d'entraînement et les configurations de déploiement.
+4. **README.md** : Fournit une vue d'ensemble et des instructions pour le dépôt.
+
+
+## Pour Commencer
+Clonez le dépôt et installez les dépendances nécessaires avec les commandes suivantes :
+```bash
+git clone https://github.com/AhmedProj/PrimePredict.git
+cd PrimePredict
+pip install -r requirements.txt
