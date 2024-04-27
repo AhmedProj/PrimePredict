@@ -1,0 +1,7 @@
+numpy
+pandas
+matplotlib
+skorch
+joblib
+scikit-learn
+torch
