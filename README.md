@@ -19,7 +19,7 @@ La Prime Prédite est calculée en utilisant la formule suivante :
 
 ## Structure du Dépôt
 1. **models/ :** Contient les fichiers des modèles entraînés et les artéfacts de sérialisation.
-2. **notebooks/ :** Cahiers Jupyter avec analyse exploratoire des données, entraînement des modèles et expérimentations d'évaluation.
+2. **notebooks/ :** Notebooks Jupyter avec analyse exploratoire des données, entraînement des modèles et expérimentations d'évaluation.
 3. **src/ :**  Code source pour le projet incluant le prétraitement des données, les définitions des modèles, les scripts d'entraînement et les configurations de déploiement.
 4. **README.md** : Fournit une vue d'ensemble et des instructions pour le dépôt.
 
