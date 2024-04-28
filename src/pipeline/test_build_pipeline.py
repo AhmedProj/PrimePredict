@@ -3,7 +3,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
-from build_pipeline import create_pipeline  # Replace 'your_module' with the actual name of your module
+from pipeline.build_pipeline import create_pipeline
 
 class TestCreatePipeline(unittest.TestCase):
 

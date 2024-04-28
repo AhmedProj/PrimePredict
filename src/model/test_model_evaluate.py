@@ -1,11 +1,17 @@
+import sys
+import os
+from pathlib import Path
+path = Path(os.path.split(__file__)[0])
+sys.path.insert(1, str(path.parent))
+
 import unittest
 import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import confusion_matrix, classification_report, mean_squared_error
-from model_evaluate import evaluate_model_freq, evaluate_model_cost 
-from train_models import cost_train, frequency_train
+from model.model_evaluate import evaluate_model_freq, evaluate_model_cost 
+from model.train_models import cost_train, frequency_train
 
 class TestModelEvaluate(unittest.TestCase):
 

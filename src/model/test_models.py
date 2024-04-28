@@ -1,5 +1,9 @@
 import sys
 import os
+from pathlib import Path
+path = Path(os.path.split(__file__)[0])
+sys.path.insert(1, str(path.parent))
+
 import unittest
 import pandas as pd
 import numpy as np
