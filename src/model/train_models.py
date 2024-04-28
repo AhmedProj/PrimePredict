@@ -1,22 +1,17 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-from skorch import NeuralNetRegressor
-import torch.nn as nn
-from torch import optim
+from sklearn.ensemble import RandomForestRegressor
 from pipeline.build_pipeline import create_pipeline
 from model.models import col_type_selector, random_sampling, removing_zero_cost, NNetwork
 
 
-
-def cost_train(df, epochs, test_path="test_cost.csv"):
+def cost_train(df, test_path="test_cost.csv"):
     """ Function to train a model to predict the cost of an insurance claim.
         PARAMETERS
         ----------
         df: DataFrame
             Dataframe containing the features
-        epochs: integer
-                Number of epochs to train the neural network
         test_path: string
                    address and name to save a test file
         OUTPUT
@@ -34,18 +29,12 @@ def cost_train(df, epochs, test_path="test_cost.csv"):
     # Saving test data
     pd.concat([x_test, y_test]).to_csv(test_path)
 
-    net = NeuralNetRegressor(
-        NNetwork(20),
-        criterion=nn.MSELoss,
-        max_epochs=epochs,
-        optimizer=optim.Adam,
-        optimizer__lr=0.0001,
-        verbose=0
-        )
     # Defining a selector to get the categorical and numerical variables
     cat_variables, num_variables = col_type_selector(X)
-    nn_pipeline = create_pipeline(num_variables, cat_variables, net)
-    nn_pipeline.fit(x_train, y_train.values.reshape(-1, 1))
+    # Model training
+    model = RandomForestRegressor()
+    nn_pipeline = create_pipeline(num_variables, cat_variables, model)
+    nn_pipeline.fit(x_train, y_train)
     return nn_pipeline
 
 def frequency_train(df, test_path="test_freq.csv"):

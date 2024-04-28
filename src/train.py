@@ -23,7 +23,6 @@ data = pd.read_csv('training.csv', sep=';')
 data = preprocessing(data)
 
 PRIME_AVG = sum(np.expm1(data['total_cost'])) / len(data['total_cost'])
-EPOCHS = 100
 
 #---------------------------------------------------------------#
 #                 Frequency prediction training                 #
@@ -35,7 +34,7 @@ freq_pipeline = frequency_train(data)
 #                     Cost prediction training                  #
 #---------------------------------------------------------------#
 
-nn_pipeline  = cost_train(data, EPOCHS)
+nn_pipeline  = cost_train(data)
 
 #---------------------------------------------------------------#
 #                            Merging all                        #

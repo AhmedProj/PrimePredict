@@ -1,11 +1,12 @@
+import sys
+import os
 import unittest
 import pandas as pd
 import numpy as np
 from sklearn.dummy import DummyClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-import torch
-from models import NNetwork, ModelEnsemble, removing_zero_cost, col_type_selector, random_sampling
+from model.models import NNetwork, ModelEnsemble, removing_zero_cost, col_type_selector, random_sampling
 
 class TestModelsAndFunctions(unittest.TestCase):
 
@@ -34,16 +35,6 @@ class TestModelsAndFunctions(unittest.TestCase):
         self.model2 = LinearRegression()
         self.model2 = self.model2.fit(self.x, self.y)
         self.model_ensemble = ModelEnsemble(self.model1, self.model2, self.prime_avg)
-
-    def test_NNetwork(self):
-        # Check if the model is initialized correctly
-        self.assertEqual(self.nn_model.module[0].in_features, self.nn_input_size)
-        self.assertEqual(self.nn_model.module[5].out_features, 1)
-
-        # Check forward pass
-        input_tensor = torch.randn(3, self.nn_input_size, dtype=torch.float64)  # Input tensor with batch size 3
-        output_tensor = self.nn_model(input_tensor)
-        self.assertEqual(output_tensor.shape, (3, 1))
 
     def test_ModelEnsemble(self):
         # Test transform method
