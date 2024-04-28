@@ -3,3 +3,6 @@ pandas
 matplotlib
 joblib
 scikit-learn
+fastapi
+uvicorn
+mlflow
