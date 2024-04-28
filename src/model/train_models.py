@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestRegressor
 from pipeline.build_pipeline import create_pipeline
-from model.models import col_type_selector, random_sampling, removing_zero_cost, NNetwork
+from model.models import col_type_selector, random_sampling, removing_zero_cost
 
 
 def cost_train(df, test_path="test_cost.csv"):

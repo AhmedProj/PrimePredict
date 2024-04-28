@@ -1,11 +1,15 @@
 """An API to expose our trained pipeline for prime prediction."""
+import sys
+import os
+from pathlib import Path
+path = str(Path(os.path.split(__file__)[0]).parent)
+sys.path.insert(1, path + '/src')
 
 from fastapi import FastAPI
 import pandas as pd
 import joblib
 
-
-model = joblib.load('src/ensemble_model.joblib')
+model = joblib.load(path + '/src/ensemble_model.joblib')
 
 app = FastAPI(
     title="Prédiction prime",
@@ -27,16 +31,16 @@ def show_welcome_page():
 
 @app.get("/predict", tags=["Predict"])
 async def predict(
-    Type: str = "test",
-    Occupation: str = "test2",
+    Type: str = "A",
+    Occupation: str = "Employed",
     Age: float = 30,
     Group1: int = 3,
     Bonus: int = 23,
     Poldur: int = 45,
-    Value: float = 34,
-    Adind: int = 34,
-    Density: float = 20,
-    Exppdays: float = 23
+    Value: float = 10000,
+    Adind: int = 1,
+    Density: float = 100.0,
+    Exppdays: float = 365
 ) -> float:
     """
     Predict function of the API.

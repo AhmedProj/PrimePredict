@@ -5,26 +5,8 @@ from sklearn.compose import make_column_selector as selector
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.base import BaseEstimator, TransformerMixin
-import torch.nn as nn
 from pipeline.build_pipeline import create_pipeline
 
-class NNetwork(nn.Module):
-    """ Class containing a pytorch neural network model
-    """
-    def __init__(self, input_size):
-        super(NNetwork, self).__init__()
-        self.module = nn.Sequential(
-            nn.Linear(input_size, 512),
-            nn.ReLU(),
-            nn.Linear(512, 256),
-            nn.ReLU(),
-            nn.Linear(256, 128),
-            nn.Linear(128, 1)
-        )
-        self.double()
-    def forward(self, x):
-        x = self.module(x)
-        return x
 
 class ModelEnsemble(BaseEstimator, TransformerMixin):
     """ Class to estimate the premium value for a given client.
