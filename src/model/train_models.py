@@ -27,12 +27,12 @@ def cost_train(df, test_path="test_cost.csv"):
     # Splitting data
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     # Saving test data
-    pd.concat([x_test, y_test]).to_csv(test_path)
+    pd.concat([x_test, y_test], axis=1).to_csv(test_path)
 
     # Defining a selector to get the categorical and numerical variables
     cat_variables, num_variables = col_type_selector(X)
     # Model training
-    model = RandomForestRegressor()
+    model = RandomForestRegressor(n_estimators=200, max_depth=7)
     nn_pipeline = create_pipeline(num_variables, cat_variables, model)
     nn_pipeline.fit(x_train, y_train)
     return nn_pipeline
@@ -58,15 +58,14 @@ def frequency_train(df, test_path="test_freq.csv"):
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y,
                                                         random_state=0)
     # Saving test data
-    pd.concat([x_test, y_test]).to_csv(test_path)
+    pd.concat([x_test, y_test], axis=1).to_csv(test_path)
     # resampling the data
     x_train, y_train = random_sampling(x_train, y_train, values=[0, 1], new_sizes=[10000, 10000])
     # Splitting resampled data
     x_train, _, y_train, _ = train_test_split(x_train, y_train, test_size=0.2, random_state=0)
     
     # Model training
-    svc = SVC(kernel='poly', degree=3, class_weight='balanced')
+    svc = SVC(kernel='poly', degree=3, class_weight='balanced', probability=True)
     freq_pipeline = create_pipeline(num_variables, cat_variables, svc)
     freq_pipeline.fit(x_train, y_train)
-
     return freq_pipeline

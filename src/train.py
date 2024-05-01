@@ -5,7 +5,9 @@ import numpy as np
 from pipeline import preprocessing
 from model.models import ModelEnsemble
 from model.train_models import frequency_train, cost_train
+from model.model_evaluate import evaluate_model_cost, evaluate_model_freq
 from pipeline.preprocessing import preprocessing
+
 
 #---------------------------------------------------------------#
 #                                Paths                          #
@@ -23,23 +25,41 @@ data = pd.read_csv('training.csv', sep=';')
 data = preprocessing(data)
 
 PRIME_AVG = sum(np.expm1(data['total_cost'])) / len(data['total_cost'])
+N_0 = len(data[data['total_cost'] == 0])
+N_1 = len(data['total_cost']) - N_0
 
 #---------------------------------------------------------------#
 #                 Frequency prediction training                 #
 #---------------------------------------------------------------#
 
 freq_pipeline = frequency_train(data)
+# test_data = pd.read_csv('test_freq.csv')
+# x_test = test_data.drop('frequence_claims', axis=1) 
+# y_test = test_data['frequence_claims']
+# proba, _, report = evaluate_model_freq(freq_pipeline, x_test, y_test)
+# print(proba)
+# print(report)
 
 #---------------------------------------------------------------#
 #                     Cost prediction training                  #
 #---------------------------------------------------------------#
 
-nn_pipeline  = cost_train(data)
+nn_pipeline = cost_train(data)
+# test_data = pd.read_csv('test_cost.csv')
+# x_test = test_data.drop('target', axis=1) 
+# y_test = test_data['target']
+# mse = evaluate_model_cost(nn_pipeline, x_test, y_test)
+# print(mse)
 
 #---------------------------------------------------------------#
 #                            Merging all                        #
 #---------------------------------------------------------------#
 # Average premium
-ensemble_model = ModelEnsemble(freq_pipeline, nn_pipeline, PRIME_AVG)
+ensemble_model = ModelEnsemble(freq_pipeline, nn_pipeline, PRIME_AVG, N_0, N_1)
 # Saving the model
 joblib.dump(ensemble_model, 'ensemble_model.joblib')
+# test_data = pd.read_csv('test_freq.csv')
+# x_test = test_data.drop('frequence_claims', axis=1) 
+# model_load = joblib.load('ensemble_model.joblib')
+# prime = model_load.transform(x_test.iloc[0].to_frame(0).T)
+# print(prime)

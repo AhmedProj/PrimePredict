@@ -13,10 +13,12 @@ class ModelEnsemble(BaseEstimator, TransformerMixin):
     It first predict the ocurrence of a insurance claims, then it proceed to calculate the premium.
     This class is not trainable, it receives models that have been already trained.
     """
-    def __init__(self, model1, model2, prime_avg):
+    def __init__(self, model1, model2, prime_avg, n0, n1):
         self.model1 = model1
         self.model2 = model2
         self.prime_avg = prime_avg
+        self.n0 = n0
+        self.n1 = n1        
 
     def fit(self, X, y=None):
         return self
@@ -37,8 +39,8 @@ class ModelEnsemble(BaseEstimator, TransformerMixin):
             prime = self.prime_avg
         else:
             X["frequence_claims"] = model1_output
-            prime = self.prime_avg + np.expm1(self.model2.predict(X)[0, 0])
-        return prime
+            prime = self.prime_avg + self.n1 * np.expm1(self.model2.predict(X)[0]) / self.n0
+        return round(prime, 2)
 
 def removing_zero_cost(x, y):
     """
