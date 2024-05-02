@@ -1,0 +1,32 @@
+# Creating MLflow deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prime-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prime-api
+  template:
+    metadata:
+      labels:
+        app: prime-api
+    spec:
+      containers:
+        - name: api
+          image: ahmed577/PrimePredict:main
+          imagePullPolicy: Always
+          env:
+            - name: MLFLOW_TRACKING_URI
+              value: https://user-ahmed-mlflow.user.lab.sspcloud.fr
+            - name: MLFLOW_MODEL_FREQ_NAME
+              value: model_freq
+            - name: MLFLOW_MODEL_REG_NAME
+              value: model_reg
+            - name: MLFLOW_MODEL_REG_VERSION
+              value: "1"
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
