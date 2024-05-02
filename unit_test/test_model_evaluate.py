@@ -1,11 +1,11 @@
+import unittest
 import sys
 import os
 from pathlib import Path
 
 path = Path(os.path.split(__file__)[0])
-sys.path.insert(1, str(path.parent))
+sys.path.insert(1, str(path.parent) + '/src')
 
-import unittest
 import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
@@ -38,15 +38,13 @@ class TestModelEvaluate(unittest.TestCase):
 
     def test_evaluate_model_freq(self):
         # Call the function to be tested
-        proba, matrix, report = evaluate_model_freq(self.pipe, self.x_test, self.y_test)
+        matrix, report = evaluate_model_freq(self.pipe, self.x_test, self.y_test)
 
         # Check the types of returned objects
-        self.assertIsInstance(proba, np.ndarray)
         self.assertIsInstance(matrix, np.ndarray)
         self.assertIsInstance(report, str)
 
         # Check the shape of returned objects
-        self.assertEqual(proba.shape, (len(self.y_test), 2))
         self.assertEqual(matrix.shape, (2, 2))
 
         # Check the content of classification report

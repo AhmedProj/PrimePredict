@@ -68,11 +68,15 @@ class ModelEnsemble(BaseEstimator, TransformerMixin):
         ------
         premium: float
                premium value predicted
+        proba: list
+               probabilities of the possible outcomes               
         """
         model1_output = self.model1.predict(X)
+        #proba = self.model1.predict_proba(X)
+        #proba = [round(proba[0], 2), round(proba[1], 2)]
         if model1_output == 0:
             prime = self.prime_avg
         else:
             X["frequence_claims"] = model1_output
             prime = self.prime_avg + self.n1 * np.expm1(self.model2.predict(X)[0]) / self.n0
-        return round(prime, 2)
+        return round(prime, 2)#, proba

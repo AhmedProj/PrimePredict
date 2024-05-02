@@ -1,8 +1,15 @@
 import unittest
+import sys
+import os
+from pathlib import Path
+
+path = Path(os.path.split(__file__)[0])
+sys.path.insert(1, str(path.parent) + '/src')
+
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
-from build_pipeline import create_pipeline
+from pipeline.build_pipeline import create_pipeline
 
 class TestCreatePipeline(unittest.TestCase):
 

@@ -4,19 +4,19 @@ import pandas as pd
 
 # Create filesystem object
 S3_ENDPOINT_URL = "https://" + os.environ["AWS_S3_ENDPOINT"]
-BUCKET = "ahmed"
+BUCKET = "ahmed" #"danalejo" #
 FILE_PATH_S3 = BUCKET + "/diffusion/"
 
 
 fs = s3fs.S3FileSystem(client_kwargs={"endpoint_url": S3_ENDPOINT_URL})
 
 
-def load_csv(file="training.csv"):
+def load_csv(file="training.csv", sep=";"):
     with fs.open(FILE_PATH_S3 + file, mode="rb") as file:
-        df = pd.read_csv(file, sep=";")
+        df = pd.read_csv(file, sep=sep)
     return df
 
 
-def send_csv(df):
-    with fs.open(FILE_PATH_S3, "w") as file:
+def send_csv(df, name):
+    with fs.open(FILE_PATH_S3 + name, "w") as file:
         df.to_csv(file)
