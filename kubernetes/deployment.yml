@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prime-api
+  name: codification-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prime-api
+      app: codification-api
   template:
     metadata:
       labels:
-        app: prime-api
+        app: codification-api
     spec:
       containers:
         - name: api
