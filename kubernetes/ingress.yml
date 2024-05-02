@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: codification-api-ingress
+  name: codif-api-ingress
 spec:
   tls:
     - hosts:
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: codification-api-service
+                name: codif-api-service
                 port:
                   number: 80
