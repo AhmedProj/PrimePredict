@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ahmed577/PrimePredict
+          images: ahmed577/primepredict
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
