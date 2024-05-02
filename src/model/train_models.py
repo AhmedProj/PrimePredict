@@ -6,7 +6,7 @@ from pipeline.build_pipeline import create_pipeline
 from model.models import col_type_selector, random_sampling, removing_zero_cost
 
 
-def cost_train(df, test_path="test_cost.csv"):
+def cost_train(df, n_estimators, max_depth, test_path="test_cost.csv"):
     """ Function to train a model to predict the cost of an insurance claim.
         PARAMETERS
         ----------
@@ -32,12 +32,12 @@ def cost_train(df, test_path="test_cost.csv"):
     # Defining a selector to get the categorical and numerical variables
     cat_variables, num_variables = col_type_selector(X)
     # Model training
-    model = RandomForestRegressor(n_estimators=200, max_depth=7)
+    model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth)
     nn_pipeline = create_pipeline(num_variables, cat_variables, model)
     nn_pipeline.fit(x_train, y_train)
     return nn_pipeline
 
-def frequency_train(df, test_path="test_freq.csv"):
+def frequency_train(df, kernel, degree, class_weight, test_path="test_freq.csv"):
     """ Function to train a model to predict the ocurrence of a insurance claim.
         PARAMETERS
         ----------
@@ -65,7 +65,7 @@ def frequency_train(df, test_path="test_freq.csv"):
     x_train, _, y_train, _ = train_test_split(x_train, y_train, test_size=0.2, random_state=0)
     
     # Model training
-    svc = SVC(kernel='poly', degree=3, class_weight='balanced', probability=True)
+    svc = SVC(kernel=kernel, degree=degree, class_weight=class_weight, probability=True)
     freq_pipeline = create_pipeline(num_variables, cat_variables, svc)
     freq_pipeline.fit(x_train, y_train)
     return freq_pipeline
