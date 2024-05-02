@@ -15,11 +15,11 @@ def evaluate_model_freq(pipe, x_test, y_test):
         ------
         matrix: ndarray object
                 Confusion matrix
-        report: str or dict
+        report: dict
                 Text summary of precision, recall and F1 score for each class
     """
     matrix = confusion_matrix(y_test, pipe.predict(x_test))
-    report = classification_report(y_test, pipe.predict(x_test))
+    report = classification_report(y_test, pipe.predict(x_test), output_dict=True)
     return matrix, report 
 
 def evaluate_model_cost(pipe, x_test, y_test):
