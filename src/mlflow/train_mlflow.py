@@ -1,14 +1,17 @@
-import mlflow
-import yaml
-from itertools import product
 import sys
+import os
+from pathlib import Path
+
+path = Path(os.path.split(__file__)[0])
+sys.path.insert(1, str(path.parent))
+
+from itertools import product
 import pandas as pd
 import numpy as np
-from pipeline import preprocessing
-from model.models import ModelEnsemble
+import yaml
 from model.train_models import frequency_train, cost_train
 from pipeline.preprocessing import preprocessing
-from tqdm import tqdm
+import mlflow
 
 
 def log_to_mlflow(
@@ -19,7 +22,7 @@ def log_to_mlflow(
     with open(params, "r") as file:
         hyperparams = yaml.safe_load(file)
 
-    data = pd.read_csv("training.csv", sep=";")
+    data = pd.read_csv(str(path.parent) + "/training.csv", sep=";")
     data = preprocessing(data)
 
     PRIME_AVG = sum(np.expm1(data["total_cost"])) / len(data["total_cost"])
@@ -75,9 +78,6 @@ def log_to_mlflow(
 
 
 if __name__ == "__main__":
-
-    sys.path.insert(1, "/model")
-    sys.path.insert(2, "/pipeline")
 
     if len(sys.argv) > 1:
         experiment = str(sys.argv[1])

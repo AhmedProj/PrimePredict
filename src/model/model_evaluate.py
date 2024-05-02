@@ -13,17 +13,14 @@ def evaluate_model_freq(pipe, x_test, y_test):
                 Series object containing the target
         OUTPUT
         ------
-        proba: ndarray object
-               probabilities of the possible outcomes
         matrix: ndarray object
                 Confusion matrix
         report: str or dict
                 Text summary of precision, recall and F1 score for each class
     """
-    proba = pipe.predict_proba(x_test)
     matrix = confusion_matrix(y_test, pipe.predict(x_test))
     report = classification_report(y_test, pipe.predict(x_test))
-    return proba, matrix, report 
+    return matrix, report 
 
 def evaluate_model_cost(pipe, x_test, y_test):
     """ Function to evaluate the model to predict the ocurrence of insurance claims.
