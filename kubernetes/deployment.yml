@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ahmed577/PrimePredict:main
+          image: ahmed577/primepredict:main
           imagePullPolicy: Always
           env:
             - name: MLFLOW_TRACKING_URI
