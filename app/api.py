@@ -7,6 +7,7 @@ from pathlib import Path
 import logging
 path = str(Path(os.path.split(__file__)[0]).parent)
 sys.path.insert(1, path + '/src')
+sys.path.insert(2, path)
 
 from fastapi import FastAPI
 import pandas as pd
@@ -16,14 +17,14 @@ from contextlib import asynccontextmanager
 
 from app.utils import get_model, ModelEnsemble
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("log_file.log"),
-        logging.StreamHandler(),
-    ],
-)
+logging.basicConfig(filename="log_file.log", 
+					format="%(asctime)s - %(levelname)s - %(message)s", 
+					filemode='w') 
+
+# creating an object
+logger=logging.getLogger() 
+
+logger.setLevel(logging.INFO)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -68,7 +69,7 @@ async def predict(
     Group1: int = 3,
     Bonus: int = 23,
     Poldur: int = 45,
-    Value: float = 10000,
+    Value: float = 1000.0,
     Adind: int = 1,
     Density: float = 100.0,
     Exppdays: float = 365
@@ -93,5 +94,6 @@ async def predict(
     )
 
     prediction = model.transform(df)
-    logging.info(f"Response: {prediction}")
+    print(f"Response: {prediction}")
+    logger.info(f"Response: {prediction}")
     return prediction
