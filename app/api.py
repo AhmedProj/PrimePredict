@@ -94,6 +94,6 @@ async def predict(
     )
 
     prediction = model.transform(df)
-    print(f"Response: {prediction}")
     logger.info(f"Response: {prediction}")
     return prediction
+
