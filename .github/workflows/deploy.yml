@@ -10,7 +10,7 @@ on:
       - argocd/**
       - kubernetes/**
       - notebooks/**
-      - slides/**
+      
   workflow_dispatch:
 
 jobs:
