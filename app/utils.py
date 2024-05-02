@@ -3,13 +3,8 @@ Utils.
 """
 import mlflow
 import random
-import pandas as pd
 import numpy as np
-from sklearn.compose import make_column_selector as selector
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 from sklearn.base import BaseEstimator, TransformerMixin
-from pipeline.build_pipeline import create_pipeline
 
 
 def get_model(
@@ -42,7 +37,6 @@ def get_model(
         ) from error
 
 
-
 class ModelEnsemble(BaseEstimator, TransformerMixin):
     """ Class to estimate the premium value for a given client.
     It first predict the ocurrence of a insurance claims, then it proceed to calculate the premium.
@@ -53,8 +47,7 @@ class ModelEnsemble(BaseEstimator, TransformerMixin):
         self.model2 = model2
         self.prime_avg = prime_avg
         self.n0 = n0
-        self.n1 = n1        
-
+        self.n1 = n1
     def fit(self, X, y=None):
         return self
 

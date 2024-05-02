@@ -1,29 +1,26 @@
 """An API to expose our trained pipeline for prime prediction."""
-
-
 import sys
 import os
 from pathlib import Path
 import logging
-path = str(Path(os.path.split(__file__)[0]).parent)
-sys.path.insert(1, path + '/src')
-sys.path.insert(2, path)
 
-from fastapi import FastAPI
-import pandas as pd
-import joblib
+PATH = str(Path(os.path.split(__file__)[0]).parent)
+sys.path.insert(1, PATH + "/src")
+sys.path.insert(2, PATH)
 
 from contextlib import asynccontextmanager
-
+from fastapi import FastAPI
+import pandas as pd
 from app.utils import get_model, ModelEnsemble
 
-logging.basicConfig(filename="log_file.log", 
-					format="%(asctime)s - %(levelname)s - %(message)s", 
-					filemode='w') 
+logging.basicConfig(
+    filename="log_file.log",
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filemode="w",
+)
 
 # creating an object
-logger=logging.getLogger() 
-
+logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 @asynccontextmanager
@@ -42,24 +39,18 @@ async def lifespan(app: FastAPI):
     model = ModelEnsemble(model_freq, model_reg)
     yield
 
-app = FastAPI(
-    lifespan=lifespan,
-    title="Prédiction prime",
-    description="test")
-
+app = FastAPI(lifespan=lifespan, title="Prédiction prime", description="test")
 
 @app.get("/", tags=["Welcome"])
 def show_welcome_page():
     """
     Show welcome page with model name and version.
     """
-
     return {
         "Message": "API de prédiction de prime",
-        "Model_name": 'Prime ML',
+        "Model_name": "Prime ML",
         "Model_version": "0.1",
     }
-
 
 @app.get("/predict", tags=["Predict"])
 async def predict(
@@ -72,7 +63,7 @@ async def predict(
     Value: float = 1000.0,
     Adind: int = 1,
     Density: float = 100.0,
-    Exppdays: float = 365
+    Exppdays: float = 365,
 ) -> float:
     """
     Predict function of the API.
@@ -80,7 +71,7 @@ async def predict(
 
     df = pd.DataFrame(
         {
-            "Type": [Type], 
+            "Type": [Type],
             "Occupation": [Occupation],
             "Age": [Age],
             "Group1": [Group1],
@@ -89,11 +80,10 @@ async def predict(
             "Value": [Value],
             "Adind": [Adind],
             "Density": [Density],
-            "Exppdays": [Exppdays]
+            "Exppdays": [Exppdays],
         }
     )
 
     prediction = model.transform(df)
-    logger.info(f"Response: {prediction}")
+    logger.info("Response: %.2f", prediction)
     return prediction
-
