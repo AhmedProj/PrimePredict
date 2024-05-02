@@ -5,9 +5,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - ahmed-ouassou-api.lab.sspcloud.fr
+        - primepredict-api.lab.sspcloud.fr
   rules:
-    - host: ahmed-ouassou-api.lab.sspcloud.fr
+    - host: primepredict-api.lab.sspcloud.fr
       http:
         paths:
           - path: /
