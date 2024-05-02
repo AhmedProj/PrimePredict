@@ -4,7 +4,7 @@ import pandas as pd
 
 # Create filesystem object
 S3_ENDPOINT_URL = "https://" + os.environ["AWS_S3_ENDPOINT"]
-BUCKET = "ahmed"
+BUCKET = "danalejo" #"ahmed"
 FILE_PATH_S3 = BUCKET + "/diffusion/"
 
 
@@ -17,6 +17,6 @@ def load_csv(file="training.csv"):
     return df
 
 
-def send_csv(df):
-    with fs.open(FILE_PATH_S3, "w") as file:
+def send_csv(df, name):
+    with fs.open(FILE_PATH_S3 + name, "w") as file:
         df.to_csv(file)
