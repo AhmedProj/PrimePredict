@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: codification-api
+  name: codif-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: codification-api
+      app: codif-api
   template:
     metadata:
       labels:
-        app: codification-api
+        app: codif-api
     spec:
       containers:
         - name: api
