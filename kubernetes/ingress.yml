@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prime-api-ingress
+spec:
+  tls:
+    - hosts:
+        - ahmed-ouassou-api.lab.sspcloud.fr
+  rules:
+    - host: ahmed-ouassou-api.lab.sspcloud.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prime-api-service
+                port:
+                  number: 80
