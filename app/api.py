@@ -14,7 +14,7 @@ import joblib
 
 from contextlib import asynccontextmanager
 
-from app.utils import get_model, ModelEnsemble
+from utils import get_model, ModelEnsemble
 
 logging.basicConfig(
     level=logging.INFO,
