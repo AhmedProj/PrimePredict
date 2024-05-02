@@ -4,7 +4,7 @@ import pandas as pd
 
 # Create filesystem object
 S3_ENDPOINT_URL = "https://" + os.environ["AWS_S3_ENDPOINT"]
-BUCKET = "danalejo" #"ahmed"
+BUCKET = "ahmed" #"danalejo" #
 FILE_PATH_S3 = BUCKET + "/diffusion/"
 
 
