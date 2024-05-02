@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 path = Path(os.path.split(__file__)[0])
-sys.path.insert(1, str(path.parent))
+sys.path.insert(1, str(path.parent) + '/src')
 
 import numpy as np
 import pandas as pd
