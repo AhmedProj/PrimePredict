@@ -42,27 +42,24 @@ Pour utiliser ce projet, suivez ces étapes :
 1. **Cloner le dépôt :**
    ```bash
    git clone https://github.com/AhmedProj/PrimePredict.git
+2. **Accéder au dépôt et installer les packages nécessaires :**
+   ```bash
    cd PrimePredict
    pip install -r requirements.txt
-## Pour Commencer
-
-Pour utiliser ce projet, suivez ces étapes :
-
-1. **Configurer déjà des variables d'environements:**
+3. **Définir des variables d'environnement pour utiliser MLflow :**
    ```bash
+   export MLFLOW_MODEL_FREQ_NAME="model_freq"
+   export MLFLOW_MODEL_FREQ_VERSION=1 
+   export MLFLOW_MODEL_REG_NAME="model_reg"
+   export MLFLOW_MODEL_REG_VERSION=1 
 
-2. **Lancer un entraînement qui utilise le fichier MLproject:**
-   
-
-4. ** Installer les dépendances :**
-   pip install -r requirements.txt
 5. **Lancer l'application :**
 
 ## Tests
 
-Pour exécuter les tests unitaires, utilisez la commande suivante :
+Pour exécuter les tests unitaires dans le dossier unit_test, utilisez la commande suivante :
 ```bash
-python -m unittest discover -s unit_test
+python file.py
 
 
 
