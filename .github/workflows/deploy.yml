@@ -27,6 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pylint
+      - name: Run unit tests
+        run: |
+          pytest unit_test/test_build_pipeline.py
+          pytest unit_test/test_model_evaluate.py
+          pytest unit_test/test_models.py
       - name: Lint
         run: |
           pylint src --fail-under=0
