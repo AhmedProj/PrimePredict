@@ -65,6 +65,12 @@ Pour utiliser ce projet, suivez ces étapes :
    ```bash
    argo submit argo_workflows/workflow.yml
 
+## Accès API:
+Vous trouverez notre API dans le lien suivant : 
+**https://primepredict-api.lab.sspcloud.fr/**
+Pour faire des requêtes : 
+**https://primepredict-api.lab.sspcloud.fr/docs**
+
 ## Tests
 
 Pour exécuter les tests unitaires dans le dossier unit_test, utilisez la commande suivante :
