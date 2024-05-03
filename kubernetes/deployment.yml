@@ -23,11 +23,11 @@ spec:
             - name: MLFLOW_MODEL_FREQ_NAME
               value: model_freq
             - name: MLFLOW_MODEL_FREQ_VERSION
-              value: "1"
+              value: "2"
             - name: MLFLOW_MODEL_REG_NAME
               value: model_reg
             - name: MLFLOW_MODEL_REG_VERSION
-              value: "1"
+              value: "2"
           resources:
             limits:
               memory: "2Gi"
