@@ -43,20 +43,20 @@ Pour utiliser ce projet, suivez ces étapes :
    ```bash
    git clone https://github.com/AhmedProj/PrimePredict.git
    cd PrimePredict
+   pip install -r requirements.txt
 ## Pour Commencer
 
 Pour utiliser ce projet, suivez ces étapes :
 
-1. **Cloner le dépôt :**
+1. **Configurer déjà des variables d'environements:**
    ```bash
-   git clone https://github.com/AhmedProj/PrimePredict.git
-   cd PrimePredict
-2. **Configurer un environnement virtuel :**
-   python -m venv venv
-source venv/bin/activate  # Sur Windows utilisez `venv\Scripts\activate`
-3. ** Installer les dépendances :**
+
+2. **Lancer un entraînement qui utilise le fichier MLproject:**
+   
+
+4. ** Installer les dépendances :**
    pip install -r requirements.txt
-4. **Lancer l'application :**
+5. **Lancer l'application :**
 
 ## Tests
 
