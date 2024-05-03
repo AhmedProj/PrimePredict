@@ -29,7 +29,7 @@ spec:
           - name: start-pipeline
             template: start-pipeline-wt
           # Task 1: Train model with given params
-          - name: train-model-with-params
+          - name: train-freq-model-with-params
             dependencies: [ start-pipeline ]
             template: run-model-training-wt
             arguments:
@@ -38,6 +38,14 @@ spec:
                   value: "{{item.kernel}}"
                 - name: degree
                   value: "{{item.degree}}"
+            # Pass the inputs to the task using "withParam"
+            withParam: "{{workflow.parameters.model-training-conf-list}}"
+
+          - name: train-reg-model-with-params
+            dependencies: [ start-pipeline ]
+            template: run-model-training-wt
+            arguments:
+              parameters:
                 - name: n_estimators
                   value: "{{item.n_estimators}}"
                 - name: max_depth
@@ -55,7 +63,7 @@ spec:
         args: [ "echo Starting training" ]
 
     # Worker template for task 1 : train frequency model with params
-    - name: run-model-training-wt
+    - name: run-freq-model-training-wt
       inputs:
         parameters:
           - name: kernel
@@ -77,16 +85,9 @@ spec:
           - name: MLFLOW_EXPERIMENT_NAME
             value: "{{workflow.parameters.mlflow-experiment-name}}"
 
-    # Worker template for task 2 : start second pipeline
-    - name: start-pipeline-wt
-      inputs:
-      container:
-        image: busybox
-        command: [ sh, -c ]
-        args: [ "echo Starting training" ]
 
     # Worker template for task 3 : train regression model with params
-    - name: run-model-training-wt
+    - name: run-reg-model-training-wt
       inputs:
         parameters:
           - name: n_estimators
