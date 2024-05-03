@@ -34,6 +34,15 @@ Prime Prédite = Prime moyen + Fréquence des Incidents * Coût Prédit de degat
 - **MLproject** : Fichier permettant de lancer des entraînements sur MLflow dans un format mlflow project. 
 - **requirements.txt** : Liste toutes les dépendances Python nécessaires pour le projet.
 
+## Accès API:
+Vous trouverez notre API dans le lien suivant : 
+
+**https://primepredict-api.lab.sspcloud.fr/**
+
+Pour faire des requêtes : 
+
+**https://primepredict-api.lab.sspcloud.fr/docs**
+
 
 ## Pour Commencer
 
