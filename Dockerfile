@@ -1,6 +1,4 @@
 FROM ubuntu:22.04
-ENV ACCESS_KEY_ID=${{ secrets.ACCESS_KEY_ID }}
-ENV SECRET=${{ secrets.SECRET }}
 WORKDIR /PrimePredict 
 # Install Python
 RUN apt-get -y update && \
