@@ -8,7 +8,7 @@ BUCKET = "ahmed" #"danalejo" #
 FILE_PATH_S3 = BUCKET + "/diffusion/"
 
 
-fs = s3fs.S3FileSystem(client_kwargs={"endpoint_url": S3_ENDPOINT_URL})
+fs = s3fs.S3FileSystem(client_kwargs={"endpoint_url": S3_ENDPOINT_URL}, key = os.environ["AWS_ACCESS_KEY_ID"], secret = os.environ["AWS_SECRET_ACCESS_KEY"])
 
 
 def load_csv(file="training.csv", sep=";"):
