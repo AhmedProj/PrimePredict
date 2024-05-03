@@ -4,15 +4,10 @@ on:
   push:
     branches:
       - main
-    tags:
-      - "*"
     paths-ignore:
-      - argocd/**
-      - kubernetes/**
       - notebooks/**
+      - README.md
       
-  workflow_dispatch:
-
 jobs:
   image-build:
     runs-on: ubuntu-latest
