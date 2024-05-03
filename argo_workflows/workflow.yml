@@ -1,0 +1,109 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: models-training-workflow-
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      # The MLflow tracking server is responsible to log the hyper-parameter and model metrics.
+      - name: mlflow-tracking-uri
+        value: https://user-<namespace>-<pod_id>.user.lab.sspcloud.fr
+      - name: mlflow-experiment-name
+        value: nace-prediction
+      - name: model-training-conf-list
+        value: |
+          [
+            { "kernel": "poly", "degree": 3 },
+            { "kernel": "rbf", "degree": 6 },
+            { "kernel": "poly", "degree": 7 }
+            { "n_estimators": 100, "max_depth": 0.2 },
+            { "n_estimators": 150, "max_depth": 0.3 }
+          ]
+  templates:
+    # Entrypoint DAG template
+    - name: main
+      dag:
+        tasks:
+          # Task 0: Start pipeline
+          - name: start-pipeline
+            template: start-pipeline-wt
+          # Task 1: Train model with given params
+          - name: train-model-with-params
+            dependencies: [ start-pipeline ]
+            template: run-model-training-wt
+            arguments:
+              parameters:
+                - name: kernel
+                  value: "{{item.kernel}}"
+                - name: degree
+                  value: "{{item.degree}}"
+                - name: n_estimators
+                  value: "{{item.n_estimators}}"
+                - name: max_depth
+                  value: "{{item.max_depth}}"
+            # Pass the inputs to the task using "withParam"
+            withParam: "{{workflow.parameters.model-training-conf-list}}"
+
+    # Now task container templates are defined
+    # Worker template for task 0 : start first pipeline
+    - name: start-pipeline-wt
+      inputs:
+      container:
+        image: busybox
+        command: [ sh, -c ]
+        args: [ "echo Starting training" ]
+
+    # Worker template for task 1 : train frequency model with params
+    - name: run-model-training-wt
+      inputs:
+        parameters:
+          - name: kernel
+          - name: degree
+      container:
+        image: inseefrlab/formation-mlops:main
+        imagePullPolicy: Always
+        command: [sh, -c]
+        args: ["mlflow run .
+                --env-manager=local
+                --entry-point=freq_model
+                -P remote_server_uri=$MLFLOW_TRACKING_URI
+                -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+                -P dim={{inputs.parameters.kernel}}
+                -P lr={{inputs.parameters.degree}}"]
+        env:
+          - name: MLFLOW_TRACKING_URI
+            value: "{{workflow.parameters.mlflow-tracking-uri}}"
+          - name: MLFLOW_EXPERIMENT_NAME
+            value: "{{workflow.parameters.mlflow-experiment-name}}"
+
+    # Worker template for task 2 : start second pipeline
+    - name: start-pipeline-wt
+      inputs:
+      container:
+        image: busybox
+        command: [ sh, -c ]
+        args: [ "echo Starting training" ]
+
+    # Worker template for task 3 : train regression model with params
+    - name: run-model-training-wt
+      inputs:
+        parameters:
+          - name: n_estimators
+          - name: max_depth
+      container:
+        image: inseefrlab/formation-mlops:main
+        imagePullPolicy: Always
+        command: [sh, -c]
+        args: ["mlflow run .
+                --env-manager=local
+                --entry-point=reg_model
+                -P remote_server_uri=$MLFLOW_TRACKING_URI
+                -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+                -P dim={{inputs.parameters.n_estimators}}
+                -P lr={{inputs.parameters.max_depth}}"]
+        env:
+          - name: MLFLOW_TRACKING_URI
+            value: "{{workflow.parameters.mlflow-tracking-uri}}"
+          - name: MLFLOW_EXPERIMENT_NAME
+            value: "{{workflow.parameters.mlflow-experiment-name}}"
