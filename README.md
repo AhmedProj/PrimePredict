@@ -7,12 +7,11 @@ export MLFLOW_MODEL_FREQ_VERSION=1
 export MLFLOW_MODEL_REG_NAME="model_reg"
 export MLFLOW_MODEL_REG_VERSION=1
 ```
-# PrimePredict
 
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/username/repository/CI)
-![Coverage](https://codecov.io/gh/username/repository/branch/master/graph/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/username/PrimePredict/CI)
+![Codecov](https://codecov.io/gh/username/PrimePredict/branch/main/graph/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 
 
 ## Description du Projet
