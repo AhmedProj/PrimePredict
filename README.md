@@ -1,7 +1,7 @@
 # PrimePredict
 
 
-## Description du Proje
+## Description du Projet
 ICI  Ce dépôt contient le développement d'un modèle de machine learning avancé destiné à prédire le total des paiements de sinistres d'assurance. Notre méthode est conçue pour faciliter le calcul des primes annuelles matérielles pour un jeu de données comprenant 36 311 contrats d'assurance pour l'année 2011.
 
 ## Objectif
@@ -16,7 +16,7 @@ Nous développerons et évaluerons les modèles suivants :
 ## Calcul de la Prime
 La Prime Prédite est calculée en utilisant la formule suivante :
 
-`Prime Prédite = Fréquence Prédite * Coût Moyen Prédit`
+`Prime Prédite = Prime moyen + Fréquence des Incidents * Coût Prédit de degats * `$$\frac{Nombre de clients avec incidents}{Nombre de clients sans incidents}$$
 
 ## Structure du Dépôt
 
