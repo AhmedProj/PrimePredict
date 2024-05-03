@@ -68,7 +68,7 @@ async def predict(
     Adind: int = 1,
     Density: float = 100.0,
     Exppdays: float = 365,
-) -> dict:
+) -> float:
     """
     Predict function of the API.
     """
@@ -90,7 +90,6 @@ async def predict(
 
     prediction, probabability = model.transform(df)
     p0, p1 = probabability[0], probabability[1]
-    output = {"prediction":prediction, "probability":probabability}
     logger.info("prediction: %.2f probability: %.2f, %.2f" % (prediction, p0, p1))
     
-    return output
+    return prediction
