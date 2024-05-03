@@ -8,9 +8,7 @@ export MLFLOW_MODEL_REG_NAME="model_reg"
 export MLFLOW_MODEL_REG_VERSION=1
 ```
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/username/PrimePredict/CI)
-![Codecov](https://codecov.io/gh/username/PrimePredict/branch/main/graph/badge.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![example workflow](https://github.com/github/docs/actions/workflows/deploy.yml/badge.svg)
 
 
 
