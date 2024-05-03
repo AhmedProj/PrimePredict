@@ -1,17 +1,6 @@
 # PrimePredict
 
 
-```
-export MLFLOW_MODEL_FREQ_NAME="model_freq"
-export MLFLOW_MODEL_FREQ_VERSION=1 
-export MLFLOW_MODEL_REG_NAME="model_reg"
-export MLFLOW_MODEL_REG_VERSION=1
-```
-
-![example workflow](https://github.com/github/docs/actions/workflows/deploy.yml/badge.svg)
-
-
-
 ## Description du Proje
 ICI  Ce dépôt contient le développement d'un modèle de machine learning avancé destiné à prédire le total des paiements de sinistres d'assurance. Notre méthode est conçue pour faciliter le calcul des primes annuelles matérielles pour un jeu de données comprenant 36 311 contrats d'assurance pour l'année 2011. Le projet englobe non seulement le développement du modèle mais aussi son déploiement pour une utilisation en production.
 
