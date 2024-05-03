@@ -6,5 +6,4 @@ scikit-learn
 fastapi
 uvicorn
 mlflow
-unittest
 pylint
