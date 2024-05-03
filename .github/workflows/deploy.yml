@@ -24,7 +24,7 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: |
-          pip install unittest
+          pip install unittest2
           pip install scikit-learn
           pip install pandas 
       - name: Run unit tests
