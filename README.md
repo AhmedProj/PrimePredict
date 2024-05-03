@@ -7,9 +7,15 @@ export MLFLOW_MODEL_FREQ_VERSION=1
 export MLFLOW_MODEL_REG_NAME="model_reg"
 export MLFLOW_MODEL_REG_VERSION=1
 ```
+# PrimePredict
 
-## Vue d'Ensemble
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/AhmedProj/PrimePredict/CI)
+![Coverage](https://img.shields.io/codecov/c/github/AhmedProj/PrimePredict)
+![License](https://img.shields.io/github/license/AhmedProj/PrimePredict)
+
+## Description du Projet
 Ce dépôt contient le développement d'un modèle de machine learning avancé destiné à prédire le total des paiements de sinistres d'assurance. Notre méthode est conçue pour faciliter le calcul des primes annuelles matérielles pour un jeu de données comprenant 36 311 contrats d'assurance pour l'année 2011. Le projet englobe non seulement le développement du modèle mais aussi son déploiement pour une utilisation en production.
+
 
 ## Objectif
 L'objectif principal de ce projet est de calculer les primes annuelles matérielles pour l'ensemble de données fourni. Pour atteindre cet objectif, nous adoptons une approche de modélisation en deux étapes qui prédit à la fois le coût des dommages matériels et la fréquence des incidents matériels.
