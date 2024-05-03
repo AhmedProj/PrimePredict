@@ -74,6 +74,10 @@ Pour utiliser ce projet, suivez ces étapes :
    ```bash
    argo submit argo_workflows/workflow.yml
 
+## ETL des logs
+
+Pour une bonne gestion de l'API on a ajouté un suivi des logs (probabilité de prédiction du premier modèle de notre pipeline) après une extraction du fichier des logs et une transformation on envoie ces logs en format parquet vers S3.
+
 ## Tests
 
 Pour exécuter les tests unitaires dans le dossier unit_test, utilisez la commande suivante :
