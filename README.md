@@ -53,7 +53,17 @@ Pour utiliser ce projet, suivez ces étapes :
    export MLFLOW_MODEL_REG_NAME="model_reg"
    export MLFLOW_MODEL_REG_VERSION=1 
 
-5. **Lancer l'application :**
+   export MLFLOW_EXPERIMENT_NAME="experience"
+
+5. **Lancer l'entraînement après definition des hyperparamètres dans MLproject et en se placant dans le fichier racine:**
+   ```bash
+   mlflow run . --env-manager=local \
+    -P remote_server_uri=$MLFLOW_TRACKING_URI \
+    -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+
+6. **Lancer l'entraînement parallélisé avec argo workflow avec la commande:**
+   ```bash
+   argo submit argo_workflows/workflow.yml
 
 ## Tests
 
