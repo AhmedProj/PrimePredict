@@ -67,8 +67,11 @@ Pour utiliser ce projet, suivez ces étapes :
 
 ## Accès API:
 Vous trouverez notre API dans le lien suivant : 
+
 **https://primepredict-api.lab.sspcloud.fr/**
+
 Pour faire des requêtes : 
+
 **https://primepredict-api.lab.sspcloud.fr/docs**
 
 ## Tests
