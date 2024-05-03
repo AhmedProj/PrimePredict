@@ -42,16 +42,17 @@ class TestModelEvaluate(unittest.TestCase):
 
         # Check the types of returned objects
         self.assertIsInstance(matrix, np.ndarray)
-        self.assertIsInstance(report, str)
+        self.assertIsInstance(report, dict)
 
         # Check the shape of returned objects
         self.assertEqual(matrix.shape, (2, 2))
 
         # Check the content of classification report
         expected_report = classification_report(
-            self.y_test, self.pipe.predict(self.x_test)
+            self.y_test, self.pipe.predict(self.x_test), 
+            output_dict=True
         )
-        self.assertEqual(report.strip(), expected_report.strip())
+        self.assertEqual(report, expected_report)
 
     def test_evaluate_model_cost(self):
         # Call the function to be tested
