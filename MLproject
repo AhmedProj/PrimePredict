@@ -1,6 +1,5 @@
 name: Prime Prediction
 
-conda_env: requirements.txt 
 
 entry_points:
   freq_model:
