@@ -26,15 +26,49 @@ La Prime Prédite est calculée en utilisant la formule suivante :
 `Prime Prédite = Fréquence Prédite * Coût Moyen Prédit`
 
 ## Structure du Dépôt
-1. **models/ :** Contient les fichiers des modèles entraînés et les artéfacts de sérialisation.
-2. **notebooks/ :** Notebooks Jupyter avec analyse exploratoire des données, entraînement des modèles et expérimentations d'évaluation.
-3. **src/ :**  Code source pour le projet incluant le prétraitement des données, les définitions des modèles, les scripts d'entraînement et les configurations de déploiement.
-4. **README.md** : Fournit une vue d'ensemble et des instructions pour le dépôt.
+
+- **.github/workflows/** : Contient les fichiers de configuration pour les workflows GitHub Actions utilisés pour l'intégration continue et le déploiement continu.
+- **Streamlit/** : Dossiers des scripts Streamlit pour créer des applications web interactives permettant de visualiser les résultats des prédictions.
+- **app/** : Code source de l'application principale, y compris les améliorations pour le score pylint.
+- **argocd/** : Fichiers de configuration pour Argo CD, utilisé pour le déploiement déclaratif des applications dans Kubernetes.
+- **kubernetes/** : Contient les fichiers de configuration Kubernetes, y compris les fichiers ingress pour la gestion du trafic réseau.
+- **models/** : Dossiers pour les modèles entraînés, y compris les fichiers pour la gestion et le suivi des modèles.
+- **notebooks/** : Jupyter notebooks pour l'analyse exploratoire des données et les tests de validation des modèles.
+- **src/** : Code source du projet contenant les scripts de prétraitement des données, les définitions des modèles, et plus.
+- **unit_test/** : Tests unitaires pour vérifier la fonctionnalité des modules de code.
+- **Dockerfile** : Fichier Docker pour construire les images des conteneurs utilisés dans le projet.
+- **README.md** : Document principal fournissant une vue d'ensemble et des instructions détaillées pour le dépôt.
+- **requirements.txt** : Liste toutes les dépendances Python nécessaires pour le projet.
 
 
 ## Pour Commencer
-Clonez le dépôt et installez les dépendances nécessaires avec les commandes suivantes :
+
+Pour utiliser ce projet, suivez ces étapes :
+
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/AhmedProj/PrimePredict.git
+   cd PrimePredict
+## Pour Commencer
+
+Pour utiliser ce projet, suivez ces étapes :
+
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/AhmedProj/PrimePredict.git
+   cd PrimePredict
+2. **Configurer un environnement virtuel :**
+   python -m venv venv
+source venv/bin/activate  # Sur Windows utilisez `venv\Scripts\activate`
+3. ** Installer les dépendances :**
+   pip install -r requirements.txt
+4. **Lancer l'application :**
+
+## Tests
+
+Pour exécuter les tests unitaires, utilisez la commande suivante :
 ```bash
-git clone https://github.com/AhmedProj/PrimePredict.git
-cd PrimePredict
-pip install -r requirements.txt
+python -m unittest discover -s unit_test
+
+
+
