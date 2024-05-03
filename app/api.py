@@ -67,7 +67,7 @@ async def predict(
     Value: float = 1000.0,
     Adind: int = 1,
     Density: float = 100.0,
-    Exppdays: float = 365,
+    Exppdays: float = 1,
 ) -> float:
     """
     Predict function of the API.
