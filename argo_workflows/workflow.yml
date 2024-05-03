@@ -77,8 +77,8 @@ spec:
                 --entry-point=freq_model
                 -P remote_server_uri=$MLFLOW_TRACKING_URI
                 -P experiment_name=$MLFLOW_EXPERIMENT_NAME
-                -P dim={{inputs.parameters.kernel}}
-                -P lr={{inputs.parameters.degree}}"]
+                -P kernel={{inputs.parameters.kernel}}
+                -P degree={{inputs.parameters.degree}}"]
         env:
           - name: MLFLOW_TRACKING_URI
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
@@ -101,8 +101,8 @@ spec:
                 --entry-point=reg_model
                 -P remote_server_uri=$MLFLOW_TRACKING_URI
                 -P experiment_name=$MLFLOW_EXPERIMENT_NAME
-                -P dim={{inputs.parameters.n_estimators}}
-                -P lr={{inputs.parameters.max_depth}}"]
+                -P n_estimators={{inputs.parameters.n_estimators}}
+                -P max_depth={{inputs.parameters.max_depth}}"]
         env:
           - name: MLFLOW_TRACKING_URI
             value: "{{workflow.parameters.mlflow-tracking-uri}}"
