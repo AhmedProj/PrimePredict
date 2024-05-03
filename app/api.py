@@ -10,11 +10,15 @@ sys.path.insert(2, PATH)
 
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from pydantic import BaseModel
 import pandas as pd
 from app.utils import get_model, ModelEnsemble
 
+
+PATH_LOG = str(Path(os.path.split(__file__)[0])) # Location to save log_file
+
 logging.basicConfig(
-    filename="log_file.log",
+    filename = PATH_LOG + "/log_file.log",
     format="%(asctime)s - %(levelname)s - %(message)s",
     filemode="w",
 )
@@ -64,7 +68,7 @@ async def predict(
     Adind: int = 1,
     Density: float = 100.0,
     Exppdays: float = 365,
-) -> float:
+) -> dict:
     """
     Predict function of the API.
     """
@@ -84,6 +88,9 @@ async def predict(
         }
     )
 
-    prediction = model.transform(df)
-    logger.info("Response: %.2f", prediction)
-    return prediction
+    prediction, probabability = model.transform(df)
+    p0, p1 = probabability[0], probabability[1]
+    output = {"prediction":prediction, "probability":probabability}
+    logger.info("prediction: %.2f probability: %.2f, %.2f" % (prediction, p0, p1))
+    
+    return output
