@@ -1,0 +1,5 @@
+app/__pycache__/
+streamlit/__pycache__/
+src/data/__pycache__/
+src/pipeline/__pycache__/
+src/model/__pycache__/
