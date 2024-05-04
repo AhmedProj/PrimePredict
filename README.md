@@ -77,6 +77,7 @@ Pour utiliser ce projet, suivez ces étapes :
 ## ETL des logs
 
 Pour une bonne gestion de l'API on a ajouté un suivi des logs (probabilité de prédiction du premier modèle de notre pipeline) après une extraction du fichier des logs et une transformation on envoie ces logs en format parquet vers S3.
+![Project Image](data_S3.png)
 
 ## Tests
 
