@@ -84,6 +84,3 @@ Pour une bonne gestion de l'API on a ajouté un suivi des logs (probabilité de 
 Pour exécuter les tests unitaires dans le dossier unit_test, utilisez la commande suivante :
 ```bash
 python file.py
-
-
-
