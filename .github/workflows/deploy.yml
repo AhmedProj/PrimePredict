@@ -34,7 +34,7 @@ jobs:
           python -m unittest unit_test/test_models.py
       - name: Lint
         run: |
-          pylint src --fail-under=4.5
+          pylint src/pipeline --fail-under=7
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
