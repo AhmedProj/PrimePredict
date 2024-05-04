@@ -16,7 +16,7 @@ Nous développerons et évaluerons les modèles suivants :
 ## Calcul de la Prime
 La Prime Prédite est calculée en utilisant la formule suivante :
 
-Prime Prédite = Prime moyen + Fréquence des Incidents * Coût Prédit de degats * N. clients avec incidents / N. clients sans incidents`
+Prime Prédite = Prime moyen + Fréquence des Incidents * Coût Prédit de degats * N. clients avec incidents / N. clients sans incidents
 
 ## Structure du Dépôt
 
